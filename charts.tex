@@ -1,0 +1,100 @@
+\documentclass[float=true, preview, 12pt]{article}
+\usepackage{import}
+\usepackage{tikz}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.16}
+\usetikzlibrary{calc}
+\usetikzlibrary{arrows}
+
+\begin{document}
+\begin{figure}
+    \centering
+    \begin{subfigure}{.45\textwidth}
+        \centering
+            \begin{tikzpicture}[scale=0.8]
+            \begin{axis}
+            [name=plot, xlabel={strain},ylabel={stress [MPa]},xmin=0,xmax=0.2,ymin=0,ymax=800,axis x line*=bottom,xticklabel style={/pgf/number format/fixed, /pgf/number format/precision=5},axis y line*=left,]
+            \addplot[green] table{./data/6040BHH.txt};\label{1}
+            \addplot[red] table{./data/0.1CSAD.txt};\label{2}
+            \end{axis}
+            % Create a node to act as the legend
+            \begin{scriptsize}
+            \node[anchor=north,draw=black] (legend) at ($(plot.north)-(-15 mm, -5 mm)$) {\begin{tabular}{l l l l}
+            6040 BHH & \ref{1}  \\ 0.1\% CSAD & \ref{2} \\
+            \end{tabular} };
+            \end{scriptsize}
+            \end{tikzpicture}
+            \caption{}
+            \label{fig:8}
+    \end{subfigure}
+    \hspace{.05\linewidth}
+    \begin{subfigure}{.45\textwidth}
+        \begin{center}
+            \begin{tikzpicture}[scale=0.8]
+            \begin{axis}
+            [name=plot, xlabel={strain},xmin=0,xmax=0.3,ymin=0,ymax=800,xticklabel style={/pgf/number format/fixed, /pgf/number format/precision=5},axis y line*=left, axis x line*=bottom,]
+            \addplot[green] table{./data/6040BHH.txt};\label{3}
+            \addplot[blue] table{./data/0.4CSN.txt};\label{4}
+            \end{axis}
+            % Create a node to act as the legend  
+            \begin{scriptsize}
+            \node[anchor=north,draw=black] (legend) at ($(plot.north)-(-15 mm, -5 mm)$) 
+            {\begin{tabular}{l l l l}
+            6040 BHH & \ref{3}  \\ 0.4\% CSN & \ref{4} \\
+            \end{tabular} };
+            \end{scriptsize}
+            \end{tikzpicture}
+            \caption{}
+            \label{fig:9}
+        \end{center}
+    \end{subfigure}
+    
+    \par\bigskip
+    
+    \begin{subfigure}{.45\textwidth}
+        \centering
+            \begin{tikzpicture}[scale=0.8]
+            \begin{axis}
+            [name=plot, xlabel={strain},ylabel={stress [MPa]},xmin=0,xmax=0.2,ymin=0,ymax=1000,axis x line*=bottom,xticklabel style={/pgf/number format/fixed, /pgf/number format/precision=5},axis y line*=left,]
+            \addplot[red] table{./data/0.1CSAD.txt};\label{5}
+            \addplot[black] table{./data/0.4CSAD.txt};\label{6}
+            \end{axis}
+            % Create a node to act as the legend  
+            \begin{scriptsize}
+            \node[anchor=north,draw=black] (legend) at ($(plot.north)-(-15 mm, -5 mm)$) {\begin{tabular}{l l l l}
+            0.1\% CSAD & \ref{5}  \\ 0.4\% CSAD & \ref{6} \\
+            \end{tabular} };
+            \end{scriptsize}
+            \end{tikzpicture}
+            \caption{}
+            \label{fig:10}
+    \end{subfigure}
+    \hspace{.05\linewidth}
+    \begin{subfigure}{.45\textwidth}
+        \begin{center}
+            \begin{tikzpicture}[scale=0.8]
+            \begin{axis}
+            [name=plot, xlabel={strain},xmin=0,xmax=0.3,ymin=0,ymax=1000,xticklabel style={/pgf/number format/fixed, /pgf/number format/precision=5},axis y line*=left, axis x line*=bottom,]
+            \addplot[blue] table{./data/0.4CSN.txt};\label{7}
+            \addplot[black] table{./data/0.4CSAD.txt};\label{8}
+            \end{axis}
+            % Create a node to act as the legend  
+            \begin{scriptsize}
+            \node[anchor=north,draw=black] (legend) at ($(plot.north)-(-15 mm, -5 mm)$) 
+            {\begin{tabular}{l l l l}
+            0.4\% CSN & \ref{7}  \\ 0.4\% CSAD & \ref{8} \\
+            \end{tabular} };
+            \end{scriptsize}
+            \end{tikzpicture}
+            \caption{}
+            \label{fig:11}
+        \end{center}
+    \end{subfigure}
+    \caption{Comparison of two specimen's stress-strain curves}
+    \label{fig:7}
+\end{figure}
+\pagestyle{empty}
+\vfill
+\end{document}
